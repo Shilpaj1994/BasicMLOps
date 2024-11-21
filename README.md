@@ -1,6 +1,6 @@
 # Basic MLOps Project
 
-[![Build and Test](https://github.com/Shilpaj1994/BasicMLOps/actions/workflows/build_and_test.yml/badge.svg)](https://github.com/Shilpaj1994/BasicMLOps/actions/workflows/build_and_test.yml)
+[![ML Pipeline](https://github.com/Shilpaj1994/BasicMLOps/actions/workflows/ml-pipeline.yml/badge.svg)](https://github.com/Shilpaj1994/BasicMLOps/actions/workflows/ml-pipeline.yml)
 
 This repository contains a machine learning project with a complete training pipeline and GitHub Actions workflow integration.
 
