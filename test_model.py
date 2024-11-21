@@ -12,11 +12,21 @@ import numpy as np
 warnings.filterwarnings('ignore', category=UserWarning, module='torchvision')
 
 def get_latest_model():
-    model_files = glob.glob('models/model_mnist_*.pth')
+    """Get the path to the latest model from artifacts directory"""
+    model_files = glob.glob('artifacts/models/model_mnist_*.pth')
     if not model_files:
-        raise FileNotFoundError("No model file found")
+        raise FileNotFoundError("No model file found in artifacts/models directory")
     latest_model = max(model_files)
     return latest_model
+
+def load_model_weights(model, model_path):
+    """Helper function to load model weights from checkpoint"""
+    try:
+        checkpoint = torch.load(model_path, map_location='cpu')
+        model.load_state_dict(checkpoint['model_state_dict'])
+    except Exception as e:
+        raise Exception(f"Error loading model weights: {str(e)}")
+    return model
 
 def test_model_architecture():
     model = MNISTModel()
@@ -41,7 +51,7 @@ def test_model_accuracy():
     try:
         # Load the latest trained model
         model_path = get_latest_model()
-        model.load_state_dict(torch.load(model_path, weights_only=True))
+        model = load_model_weights(model, model_path)
         print(f"\nTesting model: {model_path}")
     except FileNotFoundError as e:
         pytest.fail("No trained model found. Please train the model first.")
@@ -79,7 +89,7 @@ def test_model_predictions():
     
     try:
         model_path = get_latest_model()
-        model.load_state_dict(torch.load(model_path, weights_only=True))
+        model = load_model_weights(model, model_path)
     except Exception as e:
         pytest.fail(f"Error loading model: {str(e)}")
     
@@ -115,7 +125,7 @@ def test_model_robustness():
     
     try:
         model_path = get_latest_model()
-        model.load_state_dict(torch.load(model_path, weights_only=True))
+        model = load_model_weights(model, model_path)
     except Exception as e:
         pytest.fail(f"Error loading model: {str(e)}")
     
@@ -148,7 +158,7 @@ def test_model_confidence():
     
     try:
         model_path = get_latest_model()
-        model.load_state_dict(torch.load(model_path, weights_only=True))
+        model = load_model_weights(model, model_path)
     except Exception as e:
         pytest.fail(f"Error loading model: {str(e)}")
     
