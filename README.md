@@ -78,34 +78,29 @@ pytest test_model.py
 The test suite includes the following test cases:
 
 1. Model Architecture Tests:
-   - Verifies correct input/output dimensions
-   - Checks if model parameters are initialized properly
-   - Ensures all layers are properly connected
+   - Verifies model has less than 25,000 parameters
+   - Checks input/output shape compatibility (28x28 input to 10 classes)
+   - Tests if model can process standard MNIST image dimensions
 
-2. Data Processing Tests:
-   - Validates MNIST data loading and preprocessing
-   - Confirms correct image dimensions and normalization
-   - Verifies augmentation pipeline functionality
-   - Tests batch generation and data loader operations
+2. Model Accuracy Tests:
+   - Validates model achieves >95% accuracy on test set
+   - Tests model performance on full validation dataset
+   - Ensures model meets minimum accuracy threshold
 
-3. Training Pipeline Tests:
-   - Checks if model can overfit a small batch
-   - Validates loss calculation and backpropagation
-   - Tests optimizer step and learning rate scheduling
-   - Ensures proper GPU/CPU device handling
+3. Per-Digit Performance Tests:
+   - Tests model accuracy for each digit (0-9)
+   - Ensures >90% accuracy for every digit class
+   - Validates balanced performance across all classes
 
-4. Model Output Tests:
-   - Verifies output probability distributions
-   - Checks prediction shape and value ranges
-   - Tests model behavior with edge cases
-   - Validates model inference time
+4. Model Robustness Tests:
+   - Tests model stability under random noise
+   - Verifies at least 80% prediction consistency with noisy inputs
+   - Validates model's resilience to input perturbations
 
-5. Model Saving/Loading Tests:
-   - Verifies model checkpoint saving
-   - Tests loading model from checkpoints
-   - Validates state dict consistency
-   - Ensures loaded model produces identical outputs
-
+5. Confidence Calibration Tests:
+   - Verifies correlation between confidence and accuracy
+   - Tests if high confidence (>0.9) predictions are accurate
+   - Ensures >95% accuracy for high confidence predictions
 
 This will generate a detailed coverage report showing which parts of the code are tested.
 
