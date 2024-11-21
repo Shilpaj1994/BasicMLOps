@@ -21,17 +21,17 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        
-    - name: Run tests with pytest
-      run: |
-        pytest test_model.py --cov=. --cov-report=xml
-                
+        pip install -r requirements.txt                
+
     - name: Train model
       run: |
         mkdir -p artifacts/models
-        python train.py --epochs 1 --batch-size 128 --visualize True
-        
+        python train.py
+
+    - name: Run tests with pytest
+      run: |
+        pytest -vsk test_model.py
+
     - name: Upload trained models
       uses: actions/upload-artifact@v3
       with:
