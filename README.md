@@ -1,6 +1,6 @@
-# Machine Learning Project
+# Basic MLOps Project
 
-[![Build Status](https://github.com/Shilpaj1994/BasicMLOps/actions/workflows/ml-pipeline.yml/badge.svg)](https://github.com/Shilpaj1994/BasicMLOps/actions/workflows/ml-pipeline.yml)
+[![Build and Test](https://github.com/Shilpaj1994/BasicMLOps/actions/workflows/build_and_test.yml/badge.svg)](https://github.com/Shilpaj1994/BasicMLOps/actions/workflows/build_and_test.yml)
 
 This repository contains a machine learning project with a complete training pipeline and GitHub Actions workflow integration.
 
@@ -65,7 +65,7 @@ python train.py
 
 You can customize training parameters using command-line arguments:
 ```bash
-python train.py --batch-size 32 --epochs 100 --learning-rate 0.001
+python train.py
 ```
 
 ### Testing
@@ -106,10 +106,6 @@ The test suite includes the following test cases:
    - Validates state dict consistency
    - Ensures loaded model produces identical outputs
 
-To run tests with coverage report:
-```bash
-pytest -vsk .
-```
 
 This will generate a detailed coverage report showing which parts of the code are tested.
 
